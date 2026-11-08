@@ -1,0 +1,553 @@
+@use "variables" as *;
+
+:root {
+    --color-principal: #{$color-principal};
+    --color-acento: #{$color-acento};
+    --color-fondo: #{$color-fondo};
+    --color-texto: #{$color-texto};
+    --color-suave: #{$color-suave};
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: $color-fondo;
+    color: $color-texto;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+// Selector de etiqueta: normaliza el margen superior de estos elementos HTML.
+h1, h2, h3, p {
+    margin-top: 0;
+}
+
+// Selector agrupado de etiquetas: comparte el tratamiento de los titulos.
+h1, h2, h3 {
+    color: $color-principal;
+    font-weight: 600;
+}
+
+a {
+    color: $color-principal;
+}
+
+// Selector de clase: aplica la identidad compartida del sitio.
+.encabezado {
+    align-items: center;
+    background: white;
+    border: 1px solid $color-suave;
+    border-radius: $radio;
+    box-shadow: $sombra;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding: 18px 24px;
+
+    .marca {
+        color: $color-principal;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -2px;
+        line-height: 1;
+        text-decoration: none;
+
+        span {
+            color: $color-acento;
+        }
+    }
+
+    .lema {
+        color: #64736a;
+        flex: 1 1 200px;
+        margin: 0;
+    }
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    // Selector hijo directo: solo los enlaces que pertenecen al menu.
+    > a {
+        border-radius: 999px;
+        color: $color-texto;
+        padding: 8px 13px;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+
+        &:hover,
+        &[aria-current="page"] {
+            background: $color-principal;
+            color: white;
+        }
+
+        // Pseudoclase de foco para navegación accesible con teclado.
+        &:focus {
+            outline: 3px solid $color-acento;
+            outline-offset: 2px;
+        }
+    }
+}
+
+.hero,
+.datos-energia,
+.pagina-intro {
+    margin-bottom: 48px;
+}
+
+// Selector de clase para el bloque principal de la portada.
+.hero {
+    background: white;
+    border: 1px solid $color-suave;
+    border-radius: $radio;
+    box-shadow: $sombra;
+    padding: clamp(28px, 6vw, 72px);
+
+    h1 {
+        font-size: clamp(2.4rem, 7vw, 5rem);
+        letter-spacing: -0.06em;
+        line-height: 1.05;
+        margin-bottom: 20px;
+    }
+
+    > p:not(.sobrelinea) {
+        color: #52635a;
+        font-size: 1.1rem;
+        margin-bottom: 24px;
+        max-width: 620px;
+    }
+}
+
+.sobrelinea {
+    color: $color-principal;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.datos-energia {
+    > p {
+        color: #52635a;
+    }
+
+    // Selector descendiente: encabezados h2 dentro del bloque de datos.
+    h2 {
+        margin-bottom: 12px;
+    }
+}
+
+.datos-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 24px 0 16px;
+}
+
+.dato {
+    background: white;
+    border: 1px solid $color-suave;
+    @include caja(22px);
+
+    // Pseudoclase de posicion: destaca las tarjetas impares.
+    &:nth-child(odd) {
+        background: #f9fbf8;
+    }
+
+    .dato-valor {
+        color: $color-principal;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 600;
+        letter-spacing: -0.05em;
+        line-height: 1;
+    }
+
+    .dato-unidad {
+        color: #68766d;
+        font-size: 0.9rem;
+        margin-left: 5px;
+    }
+
+    p {
+        color: #52635a;
+        font-size: 0.9rem;
+        margin: 12px 0 0;
+    }
+}
+
+.dato-destacado {
+    border-color: $color-acento;
+}
+
+.nota-datos,
+.nota-equipo,
+.nota-formulario {
+    color: #68766d;
+    font-size: 0.85rem;
+}
+
+.beneficios {
+    margin-bottom: 48px;
+}
+
+.seccion-cabecera {
+    margin-bottom: 20px;
+}
+
+.tarjetas {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.tarjeta {
+    background: white;
+    border: 1px solid $color-suave;
+    border-radius: $radio;
+    box-shadow: 0 3px 12px rgba(27, 55, 37, 0.06);
+    padding: 20px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    // Pseudoclase hover para dar respuesta visual al puntero.
+    &:hover {
+        box-shadow: $sombra;
+        transform: translateY(-3px);
+    }
+
+    h3 {
+        font-size: 1.1rem;
+        margin: 12px 0 8px;
+    }
+
+    p {
+        color: #52635a;
+        margin-bottom: 8px;
+    }
+}
+
+.numero-tarjeta {
+    color: #91a599;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.pagina-intro {
+    h1 {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        letter-spacing: -0.04em;
+        margin-bottom: 12px;
+    }
+
+    > p:last-child {
+        color: #52635a;
+        max-width: 680px;
+    }
+}
+
+.controles-catalogo {
+    margin-bottom: 20px;
+}
+
+.buscador {
+    margin-bottom: 14px;
+    max-width: 520px;
+}
+
+.filtros {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filtro {
+    background: white;
+    border: 1px solid #b7c8bb;
+    border-radius: 999px;
+    color: $color-texto;
+    padding: 8px 14px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+    &:hover,
+    &.activo {
+        background: $color-principal;
+        border-color: $color-principal;
+        color: white;
+    }
+
+    &:focus {
+        outline: 3px solid $color-acento;
+        outline-offset: 2px;
+    }
+}
+
+.resultado-busqueda {
+    color: #68766d;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.catalogo {
+    align-items: start;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: minmax(0, 3fr) minmax(250px, 1fr);
+}
+
+.tarjetas .tarjeta-producto:nth-child(3n + 1) {
+    border-top: 3px solid $color-acento;
+}
+
+.tarjeta-producto {
+    h2 {
+        font-size: 1.1rem;
+        margin: 12px 0;
+    }
+
+    > p {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+}
+
+.categoria {
+    background: $color-suave;
+    border-radius: 999px;
+    color: $color-principal;
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+}
+
+.ahorro {
+    color: $color-principal;
+    font-weight: 600;
+}
+
+.precio {
+    color: $color-principal;
+    font-size: 1.25rem !important;
+    font-weight: 700;
+}
+
+// Selector de id: el carrito es una región única en el catálogo.
+#carrito {
+    background: white;
+    border: 1px solid $color-suave;
+    border-radius: $radio;
+    box-shadow: $sombra;
+    padding: 20px;
+    position: sticky;
+    top: 16px;
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 8px;
+    }
+}
+
+.total-carrito {
+    border-top: 1px solid $color-suave;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding-top: 12px;
+}
+
+.tarjetas-equipo {
+    margin-bottom: 16px;
+    grid-template-columns: minmax(0, 520px);
+    max-width: 520px;
+}
+
+.tarjeta-equipo {
+    h2 {
+        font-size: 1.15rem;
+        margin: 14px 0 5px;
+    }
+}
+
+.avatar-equipo {
+    align-items: center;
+    background: $color-suave;
+    border-radius: 50%;
+    color: $color-principal;
+    display: inline-flex;
+    font-weight: 600;
+    height: 48px;
+    justify-content: center;
+    width: 48px;
+}
+
+.rol-equipo {
+    color: $color-principal !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.formulario-contacto {
+    background: white;
+    border: 1px solid $color-suave;
+    border-radius: $radio;
+    box-shadow: $sombra;
+    margin-bottom: 48px;
+    max-width: 700px;
+    padding: clamp(20px, 4vw, 36px);
+
+    // Selector de atributo: marca campos obligatorios sin cambiar Bootstrap.
+    input[required],
+    select[required],
+    textarea[required] {
+        border-left: 3px solid $color-principal;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: $color-principal;
+        box-shadow: 0 0 0 0.2rem rgba(39, 81, 57, 0.16);
+    }
+}
+
+.campo-formulario {
+    margin-bottom: 18px;
+
+    label {
+        display: block;
+        font-size: 0.92rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+}
+
+.confirmacion-contacto {
+    color: $color-principal;
+    font-weight: 600;
+    margin: 14px 0 0;
+}
+
+.pie {
+    border-top: 1px solid $color-suave;
+    color: #68766d;
+    font-size: 0.84rem;
+    margin-top: 40px;
+    padding: 18px 0 8px;
+
+    p {
+        margin-bottom: 5px;
+    }
+}
+
+.sr-only {
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--color-principal);
+    --bs-btn-border-color: var(--color-principal);
+    --bs-btn-hover-bg: #1c4930;
+    --bs-btn-hover-border-color: #1c4930;
+    --bs-btn-active-bg: #153824;
+    --bs-btn-active-border-color: #153824;
+    --bs-btn-focus-shadow-rgb: 39, 81, 57;
+    border-radius: 999px;
+}
+
+.btn-outline-secondary {
+    --bs-btn-color: var(--color-principal);
+    --bs-btn-border-color: #b7c8bb;
+    --bs-btn-hover-bg: var(--color-principal);
+    --bs-btn-hover-border-color: var(--color-principal);
+    --bs-btn-hover-color: white;
+    border-radius: 999px;
+}
+
+.form-control,
+.form-select {
+    border-color: #cbd6ce;
+    border-radius: 8px;
+}
+
+@media (max-width: $tablet) {
+    .catalogo {
+        grid-template-columns: 1fr;
+    }
+
+    #carrito {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .datos-grid,
+    .tarjetas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .encabezado {
+        align-items: flex-start;
+
+        .lema {
+            flex-basis: calc(100% - 130px);
+            text-align: right;
+        }
+    }
+}
+
+@media (max-width: $celular) {
+    body.container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .encabezado {
+        flex-direction: column;
+        padding: 18px;
+
+        .lema {
+            flex: initial;
+            text-align: left;
+        }
+    }
+
+    .menu {
+        align-items: stretch;
+        flex-direction: column;
+        width: 100%;
+
+        > a {
+            padding-left: 10px;
+        }
+    }
+
+    .datos-grid,
+    .tarjetas {
+        grid-template-columns: 1fr;
+    }
+
+    .filtros {
+        align-items: stretch;
+        flex-direction: column;
+
+        .filtro {
+            text-align: left;
+        }
+    }
+}

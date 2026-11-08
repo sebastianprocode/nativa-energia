@@ -1,0 +1,4 @@
+node_modules/
+PASO_A_PASO.md
+npm-debug.log*
+.DS_Store

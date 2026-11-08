@@ -1,0 +1,16 @@
+{
+  "name": "nativa-energia",
+  "version": "1.0.0",
+  "description": "Sitio educativo de una tienda de equipos eficientes",
+  "scripts": {
+    "build:css": "sass scss/estilos.scss css/estilos.css --no-source-map",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "sass": "^1.106.1"
+  }
+}
